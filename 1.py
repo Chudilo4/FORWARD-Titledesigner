@@ -26,6 +26,7 @@ def main():
         with open(file, encoding='windows-1251', mode='r') as f:
             path_file = f'log {datetime.datetime.now()}.txt'
             path = Path(os.getcwd(), path_file)
+            path.replace('\\', '/')
             print(path)
             with open(f"{path}", encoding='windows-1251', mode='w') as f3:
                 for line in f:
