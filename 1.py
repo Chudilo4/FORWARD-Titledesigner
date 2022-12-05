@@ -3,7 +3,7 @@ import re
 import datetime
 import argparse
 import logging
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 logging.basicConfig(level='INFO')  # Задаём уровень логирования
 logger = logging.getLogger()
@@ -26,9 +26,7 @@ def main():
         with open(file, encoding='windows-1251', mode='r') as f:
             path_file = f'log {datetime.datetime.now()}.txt'
             path = Path(os.getcwd(), path_file)
-            path.replace('\\', '/', 8)
-            print(path)
-            with open(f"{path}", encoding='windows-1251', mode='w') as f3:
+            with open(f"{PureWindowsPath(path)}", encoding='windows-1251', mode='w') as f3:
                 for line in f:
                     r = re.findall(r'D:\\ЭФИР\\.*', line)
                     r2 = re.findall(r'(?<=\\ЭФИР)\\.*', line)
