@@ -25,7 +25,7 @@ def main():
         file = parser()
         with open(file, encoding='windows-1251', mode='r') as f:
             path_file = f'log {datetime.datetime.now()}.txt'
-            path = Path.cwd()/path_file
+            path = Path(os.getcwd(), path_file)
             print(path)
             with open(f"{path}", encoding='windows-1251', mode='w') as f3:
                 for line in f:
