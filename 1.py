@@ -9,22 +9,11 @@ logging.basicConfig(level='INFO')  # Задаём уровень логиров�
 logger = logging.getLogger()
 
 
-def parser():
-    pars = argparse.ArgumentParser(
-        description='Указать файл расписания для создания задания в титрах'
-    )
-    pars.add_argument('file',
-                      metavar='file - Передать путь до файла ',
-                      type=str,)
-    args = pars.parse_args()
-    return args.file
-
-
 def main():
     try:
-        file = parser()
-        with open(file, encoding='windows-1251', mode='r') as f:
-            path_file = f'log {datetime.datetime.now()}.txt'
+        path_to_file = str(input("Введите путь до файла: "))
+        with open(path_to_file, encoding='windows-1251', mode='r') as f:
+            path_file = f'log {str(datetime.datetime.now())}'
             with open(f"{path_file}", encoding='windows-1251', mode='w') as f3:
                 for line in f:
                     r = re.findall(r'D:\\ЭФИР\\.*', line)
