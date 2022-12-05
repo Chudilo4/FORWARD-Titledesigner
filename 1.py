@@ -3,6 +3,7 @@ import re
 import datetime
 import argparse
 import logging
+from pathlib import Path
 
 logging.basicConfig(level='INFO')  # Задаём уровень логирования
 logger = logging.getLogger()
@@ -24,9 +25,9 @@ def main():
         file = parser()
         with open(file, encoding='windows-1251', mode='r') as f:
             path_file = f'log {datetime.datetime.now()}.txt'
-            path = os.path.join(os.getcwd(), path_file)
+            path = Path.cwd()/path_file
             print(path)
-            with open(path, encoding='windows-1251', mode='w') as f3:
+            with open(f"{path}", encoding='windows-1251', mode='w') as f3:
                 for line in f:
                     r = re.findall(r'D:\\ЭФИР\\.*', line)
                     r2 = re.findall(r'(?<=\\ЭФИР)\\.*', line)
